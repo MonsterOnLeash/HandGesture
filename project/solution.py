@@ -62,7 +62,6 @@ def graham(points):
 def is_on_line(p1, p2, p3):
     eps = 0
     cp = cross_product(p1, p2, p3)
-    print(f'{cp} cross product')
     if 2000 > abs(cp) > 200:
         return False
     return True
@@ -118,7 +117,6 @@ if __name__ == '__main__':
                 cv.drawContours(frame, [segmented + (roi_right//2, roi_top)], -1, (0, 0, 255))
                 cv.drawContours(frame, [np.array(hull) + (roi_right//2, roi_top)], -1, (0, 255, 255))
                 defs = defects(np.squeeze(segmented), hull)
-                print(defs)
                 if defs >= 7 and timer <= 0:
                     pyautogui.press('space')
                     timer = 60
@@ -128,6 +126,6 @@ if __name__ == '__main__':
         cv.rectangle(frame, (roi_left, roi_top), (roi_right, roi_bottom), (0, 255, 0), 2)
         cv.imshow("Video Feed", frame)
         if cv.waitKey(10) == ord('x'):
-            break
+            break 
     camera.release()
     cv.destroyAllWindows()
